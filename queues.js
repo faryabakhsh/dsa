@@ -2,7 +2,8 @@
 // FIFO data structure 
 // line 
 // printing one page at a time 
-
+// enqueue --- adding to the end
+// dequeue --- removing from the beginning
 
 class Node {
     constructor(value){
@@ -20,25 +21,27 @@ class Queue {
 
     enqueue(value){                                //the function is accepting a value
         var newNode = new Node(val);            //creating a new node with that value
-        if(!this.first) {                        //IF there are no first and last value in the stac, set the first and the last values in the stack to be the newly created node 
-            this.first = newNode;
+        if(!this.first) {                        //IF there are no first and last value in the queue, set the first and the last values in the queue to be the newly created node 
+            this.first = newNode;               // in case we have the empty queue
             this.last = newNode;
-         } else {                                 // if there is altelat one node create a variable that stores the currnet first property on the stck
-            var temp = this.first;              //the current this.first, bcoz we are adding it to the beginning ----> resetting the forst property to be the newly cteated node
-            this.first = newNode;
-            this.first.next = temp;                //the old beginning ----> set the next property on the node to be the prebiously created variable
+         } else {                                 
+            this.last.next = newNode;              // otherwise set the next propety on the current last to be that node, and then set the last property of the queue to be that node
+            this.last = newNode
+                           
          }
-         return ++this.size
+         return ++this.size                 //incremnet the size of the queue to be one
     }
 
+
+    //remove form the beginning
     dequeue(){
-        if(!this.first) return null;     //if the list is empty return null, there is nothing in the stack to pop
-        var temp = this.first;
-        if (this.first === this.last) {
+        if(!this.first) return null;     //if the list is empty return null, there is nothing in the queue to pop
+        var temp = this.first;              // this is what we are going to return at the very end
+        if (this.first === this.last) {     /// if there is only one thing to be left set the value to thsi.last
             this.last = null;
         }
-        this.first = this. first.next;
+        this.first = this.first.next;          // we take this.fast from the begginging and update it to be the next item
         this.size --;
-        return temp.value
+        return temp.value;
     }
 }
