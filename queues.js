@@ -40,7 +40,7 @@ class Queue {
         if (this.first === this.last) {     /// if there is only one thing to be left set the value to thsi.last
             this.last = null;
         }
-        this.first = this.first.next;          // we take this.fast from the begginging and update it to be the next item
+        this.first = this.first.next;          // we take this.first from the begginging and update it to be the next item
         this.size --;
         return temp.value;
     }

@@ -3,7 +3,7 @@
 // USES:
 // peer to peer Networking
 // web crawlers == wikipedia
-// finding closeset matching recommendation ----- WebGLTransformFeedback, instagram friend recommendations
+// finding closest matching recommendation ----- WebGLTransformFeedback, instagram friend recommendations
 // shortest path problems
 
 // DFS:
