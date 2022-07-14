@@ -4,29 +4,30 @@ class PriorityQueue {
     }
     enqueue(val, priority) {
       this.values.push({val, priority});
-      this.sort();
+      // this.sort();
     };
     dequeue() {
       return this.values.shift();
     };
-    sort() {
-      this.values.sort((a, b) => a.priority - b.priority);
-    };
+    //  sort() 
+    //  {
+    //    this.values.sort((a, b) => a.priority - b.priority);
+    // };
   }
 
 class WeightedGraph {
     constructor() {
         this.adjacencyList = {};
     }
-    addVertex(vertex){
-        if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
-    }
+    addVertex(vertex){                                  // write a method called addVetex and set its value equal to vertex
+      this.adjacencyList[vertex] =[]                  // it should add a key to the adjacency list with the name of the vertex and set its value to be an empty array
+  }                                                   // e.g, g.addVertex("tokyo") // {"tokyo": []"}
     addEdge(vertex1,vertex2, weight){
         this.adjacencyList[vertex1].push({node:vertex2,weight});
-        this.adjacencyList[vertex2].push({node:vertex1, weight});
+        this.adjacencyList[vertex2].push({node:vertex1, weight});           // A: [B,3]
     }
     Dijkstra(start, finish){                        // the function should accept a starting and an ending vertex
-         const nodes = new PriorityQueue();         //making a new priority queue
+        const nodes = new PriorityQueue();         //making a new priority queue
         const distances = {};
         const previous = {};                      // where we store the quickest path to a certain vertex
         let smallest;                             // whatever the node we are visiting
@@ -36,15 +37,15 @@ class WeightedGraph {
         for(let vertex in this.adjacencyList) {          // using a for in loop, looping over entire adjacency list
             if(vertex === start) {                      // e.g. we are looking at "A"
                 distances[vertex] = 0;                              //create an object (distances) and set each key to be every vertex in the adjacency list with the value of infinity, except for the starting vertex hich should  have a value of 0
-                nodes.enqueue(vertex, 0);                           // after setting a value in the distances object, add each vertex with a priority of infinity to the priority queue, except the starting vertex which should have a priorty of 0, because thats where we begin
+              nodes.enqueue(vertex, 0);                           // after setting a value in the distances object, add each vertex with a priority of infinity to the priority queue, except the starting vertex which should have a priorty of 0, because thats where we begin
             } else {
                 distances[vertex] = Infinity;                       
-                nodes.enqueue(vertex, Infinity);                    // nodes- PQ - we add in two things a vertex and its priority------ we will be enquing things later with the peiority thats isnt infinity
+                nodes.enqueue(vertex, Infinity);                    // nodes- PQ - we add in two things a vertex and its priority------ we will be enquing things later with the priority thats isn't infinity
             }
             previous[vertex] = null;                        //creating another object called previous and set each key to be every vertices in the adjacency list with a value of null
         }
-            //console.log(distances);
-
+            console.log(distances);
+            console.log(previous);
         // as long as there is something to visit
         while(nodes.values.length) {                      // nodes is our PQ, inside our PQ we are storing values, we are taking its length
           smallest =  nodes.dequeue().val;                //dequeue a vertex from a priority queue ----- give us the vertex of lowest priority
